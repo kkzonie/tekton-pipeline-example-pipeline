@@ -9,7 +9,7 @@ spec:
   - name: git-app-repo-revision
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
-    kind: PipelineResource
+    kind: Pipeline
     metadata:
       name: git-app-repo-$(uid)
       namespace: tekton-argocd-example
@@ -26,7 +26,7 @@ spec:
         value: $(tt.params.git-app-repo-name)
       type: git
   - apiVersion: tekton.dev/v1beta1
-    kind: PipelineResource
+    kind: Pipeline
     metadata:
       name: image-registry-$(uid)
       namespace: tekton-argocd-example
