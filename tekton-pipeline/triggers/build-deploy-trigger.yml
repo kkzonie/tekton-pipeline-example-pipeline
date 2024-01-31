@@ -87,12 +87,28 @@ spec:
     template:
       name: tekton-argocd-example-build-tt
 
+#---
+
+#apiVersion: getambassador.io/v2
+#kind: Mapping
+#metadata:
+#  name: tekton-argocd-example-build-el-mapping
+#spec:
+#  prefix: /tekton-argocd-example-build-mapping/
+#  service: el-tekton-argocd-example-build-el:8080
+
 ---
 
-apiVersion: getambassador.io/v2
-kind: Mapping
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: tekton-argocd-example-build-el-mapping
 spec:
-  prefix: /tekton-argocd-example-build-mapping/
-  service: el-tekton-argocd-example-build-el:8080
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`webhook-tekton-2048.kkzonie.com`)
+    kind: Rule
+    services:
+    - name: el-tekton-argocd-example-build-el
+      port: 8080
