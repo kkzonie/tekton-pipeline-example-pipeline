@@ -39,7 +39,7 @@ spec:
         # Replace <docker_registry_name> with your docker registry name (e.g. my-acr.azurecr.io)
         value: 'https://hub.docker.com/r/kkzonie'
       type: image
-  - apiVersion: tekton.dev/v1alpha1
+  - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
       generateName: tekton-argocd-example-build-deploy-pipeline-run-
